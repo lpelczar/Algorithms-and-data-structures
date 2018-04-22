@@ -1,12 +1,13 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Minesweeper {
+class Minesweeper {
 
-    public char[][] generateBoard() {
+    private char[][] board;
+
+    void generateBoard() {
         int minBoardSize = 3;
         int maxBoardSize = 10;
 
@@ -16,21 +17,20 @@ public class Minesweeper {
         fields.addAll(Collections.nCopies(7, '.'));
         fields.addAll(Collections.nCopies(3, '*'));
 
-        char[][] board = new char[randomBoardSize][randomBoardSize];
+        this.board = new char[randomBoardSize][randomBoardSize];
 
         for (int row = 0; row < board.length; row++) {
             for (int column = 0; column < board[row].length; column++) {
                 board[row][column] = getRandomField(fields);
             }
         }
-        return board;
     }
 
     private char getRandomField(List<Character> fields) {
         return fields.get(ThreadLocalRandom.current().nextInt(0, fields.size()));
     }
 
-    public void printBoard(char[][] board) {
+    void printBoard() {
         for (char[] row : board) {
             for (char column : row) {
                 System.out.print(column + " ");
