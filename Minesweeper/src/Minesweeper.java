@@ -63,7 +63,7 @@ class Minesweeper {
     void printBoard(char[][] board) {
         for (char[] row : board) {
             for (char column : row) {
-                System.out.print(column + " ");
+                System.out.print(column + "  ");
             }
             System.out.println();
         }
