@@ -16,6 +16,10 @@ public class SinglyLinkedList<T> {
         return head.getData();
     }
 
+    public T getLast() {
+        return last.getData();
+    }
+
     public void add(T data) {
         if (head == null) {
             this.head = new Node<>(data);
@@ -28,9 +32,11 @@ public class SinglyLinkedList<T> {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        while (head.getNext() != null) {
+        Node<T> current = head;
+        while (current != null) {
             stringBuilder.append(" ");
-            stringBuilder.append(head.getData());
+            stringBuilder.append(current.getData());
+            current = current.getNext();
         }
         return stringBuilder.toString();
     }

@@ -23,7 +23,7 @@ class Node<T> {
         return data;
     }
 
-    public Node<T> getNext() {
+    Node<T> getNext() {
         return next;
     }
 }

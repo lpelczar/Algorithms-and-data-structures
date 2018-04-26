@@ -15,6 +15,15 @@ public class SinglyLinkedListTest {
         assertEquals(firstElement, list.getFirst());
     }
 
+    @Test
+    public void whenAddMultipleTimesThenItemsAreProperlyAdded() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        linkedList.add(32);
+        linkedList.add(42);
+        String result = " 0 1 2 3 4 5 6 7 8 9 10 32 42";
+        assertEquals(result, linkedList.toString());
+    }
+
     private SinglyLinkedList<Integer> createList(int numOfElements) {
         SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
         for (Integer i = 0; i < numOfElements; ++i)
