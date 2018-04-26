@@ -34,7 +34,16 @@ public class SinglyLinkedListTest {
     public void whenAddAsFirstThenChangeHead() {
         SinglyLinkedList<Integer> linkedList = createList(11);
         linkedList.addAsFirst(890);
+        String result = " 890 0 1 2 3 4 5 6 7 8 9 10";
+        assertEquals(result, linkedList.toString());
         assertEquals(new Integer(890), linkedList.getFirst());
+    }
+
+    @Test
+    public void whenElementsAddedThenReturnAppropriateLength() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        linkedList.add(800);
+        assertEquals(12, linkedList.getLength());
     }
 
     private SinglyLinkedList<Integer> createList(int numOfElements) {

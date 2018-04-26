@@ -20,6 +20,10 @@ public class SinglyLinkedList<T> {
         return last.getData();
     }
 
+    public int getLength() {
+        return length;
+    }
+
     public void add(T data) {
         if (head == null) {
             this.head = new Node<>(data);
