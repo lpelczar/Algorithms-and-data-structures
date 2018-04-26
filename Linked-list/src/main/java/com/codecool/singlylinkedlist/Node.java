@@ -1,23 +1,29 @@
 package com.codecool.singlylinkedlist;
 
-public class Node<T> {
+class Node<T> {
 
     private T data;
     private Node<T> next;
 
-    public Node(T data) {
+    Node(T data) {
         this.data = data;
     }
 
-    public void append(T data) {
+    Node<T> append(T data) {
         Node<T> current = this;
         while (current.next != null) {
             current = current.next;
         }
-        current.next = new Node<>(data);
+        Node<T> appended = new Node<>(data);
+        current.next = appended;
+        return appended;
     }
 
-    public T getData() {
+    T getData() {
         return data;
+    }
+
+    public Node<T> getNext() {
+        return next;
     }
 }

@@ -10,8 +10,17 @@ public class SinglyLinkedListTest {
 
     @Test
     public void whenInstantiatedThenHeadIsProperlyDefined() {
-        String firstElement = "Element1";
-        SinglyLinkedList<String> list = new SinglyLinkedList<>(firstElement);
+        Integer firstElement = 0;
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>(firstElement);
         assertEquals(firstElement, list.getFirst());
+    }
+
+    private SinglyLinkedList<Integer> createList(int numOfElements) {
+        SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
+        for (Integer i = 0; i < numOfElements; ++i)
+        {
+            linkedList.add(i);
+        }
+        return linkedList;
     }
 }

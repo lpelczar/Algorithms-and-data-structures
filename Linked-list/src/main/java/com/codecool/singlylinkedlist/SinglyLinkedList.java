@@ -3,8 +3,10 @@ package com.codecool.singlylinkedlist;
 public class SinglyLinkedList<T> {
 
     private Node<T> head;
-    private Node<T> last = null;
-    private int length = 0;
+    private Node<T> last;
+    private int length;
+
+    public SinglyLinkedList() {}
 
     public SinglyLinkedList(T data) {
         this.head = new Node<>(data);
@@ -14,7 +16,22 @@ public class SinglyLinkedList<T> {
         return head.getData();
     }
 
-    public void append(T data) {
+    public void add(T data) {
+        if (head == null) {
+            this.head = new Node<>(data);
+        } else {
+            last = head.append(data);
+        }
+        length++;
+    }
 
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        while (head.getNext() != null) {
+            stringBuilder.append(" ");
+            stringBuilder.append(head.getData());
+        }
+        return stringBuilder.toString();
     }
 }
