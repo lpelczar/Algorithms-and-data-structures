@@ -46,6 +46,18 @@ public class SinglyLinkedList<T> {
         this.size = 0;
     }
 
+    public boolean contains(T data) {
+        boolean isFound = false;
+        Node<T> current = head;
+        while (current != null) {
+            if (current.getData().equals(data)) {
+                isFound = true;
+            }
+            current = current.getNext();
+        }
+        return isFound;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
