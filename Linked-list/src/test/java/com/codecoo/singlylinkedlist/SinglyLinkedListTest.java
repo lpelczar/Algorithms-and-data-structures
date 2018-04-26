@@ -24,6 +24,12 @@ public class SinglyLinkedListTest {
         assertEquals(result, linkedList.toString());
     }
 
+    @Test
+    public void whenGetLatThenReturnLast() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        assertEquals(new Integer(10), linkedList.getLast());
+    }
+
     private SinglyLinkedList<Integer> createList(int numOfElements) {
         SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
         for (Integer i = 0; i < numOfElements; ++i)
