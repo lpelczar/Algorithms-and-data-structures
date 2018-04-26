@@ -6,11 +6,15 @@ public class SinglyLinkedList<T> {
     private Node<T> last = null;
     private int length = 0;
 
-    public SinglyLinkedList(Node<T> head) {
-        this.head = head;
+    public SinglyLinkedList(T data) {
+        this.head = new Node<>(data);
     }
 
-    public Node getFirst() {
-        return head;
+    public T getFirst() {
+        return head.getData();
+    }
+
+    public void append(T data) {
+
     }
 }
