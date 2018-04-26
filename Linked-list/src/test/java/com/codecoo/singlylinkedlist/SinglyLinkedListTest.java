@@ -25,9 +25,16 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void whenGetLatThenReturnLast() {
+    public void whenGetLastThenReturnLast() {
         SinglyLinkedList<Integer> linkedList = createList(11);
         assertEquals(new Integer(10), linkedList.getLast());
+    }
+
+    @Test
+    public void whenAddAsFirstThenChangeHead() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        linkedList.addAsFirst(890);
+        assertEquals(new Integer(890), linkedList.getFirst());
     }
 
     private SinglyLinkedList<Integer> createList(int numOfElements) {

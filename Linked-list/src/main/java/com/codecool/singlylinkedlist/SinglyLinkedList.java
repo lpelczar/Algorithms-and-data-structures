@@ -29,6 +29,13 @@ public class SinglyLinkedList<T> {
         length++;
     }
 
+    public void addAsFirst(T data) {
+        Node<T> newHead = new Node<>(data);
+        newHead.setNext(this.head);
+        this.head = newHead;
+        length++;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
