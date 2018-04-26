@@ -20,7 +20,7 @@ public class SinglyLinkedList<T> {
         return last.getData();
     }
 
-    public int getLength() {
+    public int size() {
         return length;
     }
 

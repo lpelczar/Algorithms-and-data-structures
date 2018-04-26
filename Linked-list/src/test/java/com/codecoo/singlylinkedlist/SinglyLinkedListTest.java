@@ -41,9 +41,9 @@ public class SinglyLinkedListTest {
 
     @Test
     public void whenElementsAddedThenReturnAppropriateLength() {
-        SinglyLinkedList<Integer> linkedList = createList(11);
+        SinglyLinkedList<Integer> linkedList = createList(12);
         linkedList.add(800);
-        assertEquals(12, linkedList.getLength());
+        assertEquals(13, linkedList.size());
     }
 
     private SinglyLinkedList<Integer> createList(int numOfElements) {
