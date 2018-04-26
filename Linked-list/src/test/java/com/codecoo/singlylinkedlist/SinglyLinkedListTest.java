@@ -1,24 +1,22 @@
 package com.codecoo.singlylinkedlist;
 
 import com.codecool.singlylinkedlist.SinglyLinkedList;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
-public class SinglyLinkedListTest {
+class SinglyLinkedListTest {
 
     @Test
-    public void whenInstantiatedThenHeadIsProperlyDefined() {
+    void whenInstantiatedThenHeadIsProperlyDefined() {
         Integer firstElement = 0;
         SinglyLinkedList<Integer> list = new SinglyLinkedList<>(firstElement);
         assertEquals(firstElement, list.getFirst());
     }
 
     @Test
-    public void whenAddMultipleTimesThenItemsAreProperlyAdded() {
+    void whenAddMultipleTimesThenItemsAreProperlyAdded() {
         SinglyLinkedList<Integer> linkedList = createList(11);
         linkedList.add(32);
         linkedList.add(42);
@@ -27,13 +25,13 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void whenGetLastThenReturnLast() {
+    void whenGetLastThenReturnLast() {
         SinglyLinkedList<Integer> linkedList = createList(11);
         assertEquals(new Integer(10), linkedList.getTail());
     }
 
     @Test
-    public void whenAddAsFirstThenChangeHead() {
+    void whenAddAsFirstThenChangeHead() {
         SinglyLinkedList<Integer> linkedList = createList(11);
         linkedList.addAsFirst(890);
         String result = " 890 0 1 2 3 4 5 6 7 8 9 10";
@@ -42,29 +40,49 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void whenElementsAddedThenReturnAppropriateLength() {
+    void whenElementsAddedThenReturnAppropriateLength() {
         SinglyLinkedList<Integer> linkedList = createList(12);
         linkedList.add(800);
         assertEquals(13, linkedList.size());
     }
 
     @Test
-    public void whenClearThenListIsEmpty() {
+    void whenClearThenListIsEmpty() {
         SinglyLinkedList<Integer> linkedList = createList(12);
         linkedList.clear();
         assertEquals("", linkedList.toString());
     }
 
     @Test
-    public void whenContainsCalledAndElementExistsThenReturnTrue() {
+    void whenContainsCalledAndElementExistsThenReturnTrue() {
         SinglyLinkedList<Integer> linkedList = createList(12);
         assertTrue(linkedList.contains(10));
     }
 
     @Test
-    public void whenContainsCalledAndElementNotExistsThenReturnFalse() {
+    void whenContainsCalledAndElementNotExistsThenReturnFalse() {
         SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
         assertFalse(linkedList.contains(10));
+    }
+
+    @Test
+    void whenInsertWithInvalidIndex1ThenThrowArrayBoundsException() {
+        SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.insert(-1, 10));
+    }
+
+    @Test
+    void whenInsertWithInvalidIndex2ThenThrowArrayBoundsException() {
+        SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.insert(20, 10));
+    }
+
+    @Test
+    void whenInsertItemThenItemIsProperlyInserted() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        linkedList.insert(2, 890);
+        String result = " 0 1 890 2 3 4 5 6 7 8 9 10";
+        assertEquals(result, linkedList.toString());
     }
 
     private SinglyLinkedList<Integer> createList(int numOfElements) {

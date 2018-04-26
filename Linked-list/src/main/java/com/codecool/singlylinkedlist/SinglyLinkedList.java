@@ -40,6 +40,26 @@ public class SinglyLinkedList<T> {
         size++;
     }
 
+    public void insert(int index, T data) {
+        if (index < 0 || index >= size) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+
+        int counter = 0;
+        Node<T> current = head;
+        while (current != null) {
+            System.out.println(counter);
+            if (counter == index - 1) {
+                Node<T> insertedNode = new Node<>(data);
+                insertedNode.setNext(current.getNext());
+                current.setNext(insertedNode);
+                size++;
+            }
+            counter++;
+            current = current.getNext();
+        }
+    }
+
     public void clear() {
         this.head = null;
         this.tail = null;
