@@ -27,7 +27,7 @@ public class SinglyLinkedListTest {
     @Test
     public void whenGetLastThenReturnLast() {
         SinglyLinkedList<Integer> linkedList = createList(11);
-        assertEquals(new Integer(10), linkedList.getLast());
+        assertEquals(new Integer(10), linkedList.getTail());
     }
 
     @Test
@@ -44,6 +44,13 @@ public class SinglyLinkedListTest {
         SinglyLinkedList<Integer> linkedList = createList(12);
         linkedList.add(800);
         assertEquals(13, linkedList.size());
+    }
+
+    @Test
+    public void whenClearThenListIsEmpty() {
+        SinglyLinkedList<Integer> linkedList = createList(12);
+        linkedList.clear();
+        assertEquals("", linkedList.toString());
     }
 
     private SinglyLinkedList<Integer> createList(int numOfElements) {

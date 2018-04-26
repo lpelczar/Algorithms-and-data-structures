@@ -3,8 +3,8 @@ package com.codecool.singlylinkedlist;
 public class SinglyLinkedList<T> {
 
     private Node<T> head;
-    private Node<T> last;
-    private int length;
+    private Node<T> tail;
+    private int size;
 
     public SinglyLinkedList() {}
 
@@ -16,28 +16,34 @@ public class SinglyLinkedList<T> {
         return head.getData();
     }
 
-    public T getLast() {
-        return last.getData();
+    public T getTail() {
+        return tail.getData();
     }
 
     public int size() {
-        return length;
+        return size;
     }
 
     public void add(T data) {
         if (head == null) {
             this.head = new Node<>(data);
         } else {
-            last = head.append(data);
+            tail = head.append(data);
         }
-        length++;
+        size++;
     }
 
     public void addAsFirst(T data) {
         Node<T> newHead = new Node<>(data);
         newHead.setNext(this.head);
         this.head = newHead;
-        length++;
+        size++;
+    }
+
+    public void clear() {
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
     }
 
     @Override
