@@ -4,6 +4,7 @@ import com.codecool.singlylinkedlist.SinglyLinkedList;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
@@ -58,6 +59,12 @@ public class SinglyLinkedListTest {
     public void whenContainsCalledAndElementExistsThenReturnTrue() {
         SinglyLinkedList<Integer> linkedList = createList(12);
         assertTrue(linkedList.contains(10));
+    }
+
+    @Test
+    public void whenContainsCalledAndElementNotExistsThenReturnFalse() {
+        SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
+        assertFalse(linkedList.contains(10));
     }
 
     private SinglyLinkedList<Integer> createList(int numOfElements) {
