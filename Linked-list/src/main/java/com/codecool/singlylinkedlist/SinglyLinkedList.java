@@ -75,21 +75,35 @@ public class SinglyLinkedList<T> {
         }
     }
 
-//    public boolean deleteWithValue(T data) {
-//        if (head != null && head.getData().equals(data)) {
-//            this.head = head.getNext();
-//            size--;
-//        } else {
-//            Node<T> current = head;
-//            while (current.getNext() != null) {
-//                if (current.getNext().getData().equals(data)) {
-//
-//                    size--;
-//                }
-//                current = current.getNext();
-//            }
-//        }
-//    }
+    public boolean delete(T data) {
+        if (head == null) {
+            return false;
+        }
+
+        boolean isDeleted = false;
+        if (head.getData().equals(data)) {
+            this.head = head.getNext();
+            size--;
+            isDeleted = true;
+        } else {
+            Node<T> current = head;
+            while (current.getNext() != null) {
+                if (current.getNext().getData().equals(data)) {
+                    Node<T> removedNode = current.getNext();
+                    if (removedNode.getNext() != null) {
+                        current.setNext(removedNode.getNext());
+                    } else {
+                        current.setNext(null);
+                    }
+                    size--;
+                    isDeleted = true;
+                    break;
+                }
+                current = current.getNext();
+            }
+        }
+        return isDeleted;
+    }
 
     public void clear() {
         head = null;

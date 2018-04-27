@@ -111,6 +111,24 @@ class SinglyLinkedListTest {
         assertEquals(result, linkedList.toString());
     }
 
+    @Test
+    void whenInsertTwoTimesThenValuesAreInsertedCorrectly() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        linkedList.insert(11, 890);
+        linkedList.insert(1, 890);
+        String result = " 0 890 1 2 3 4 5 6 7 8 9 10 890";
+        assertEquals(result, linkedList.toString());
+    }
+
+    @Test
+    void whenDeleteElementInTheMiddleThenElementIsDeleted() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        linkedList.delete(2);
+        linkedList.delete(5);
+        String result = " 0 1 3 4 6 7 8 9 10";
+        assertEquals(result, linkedList.toString());
+    }
+
     private SinglyLinkedList<Integer> createList(int numOfElements) {
         SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
         for (Integer i = 0; i < numOfElements; ++i)
