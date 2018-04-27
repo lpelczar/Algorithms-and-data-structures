@@ -3,8 +3,8 @@ package com.codecool.doublylinkedlist;
 import com.codecool.singlylinkedlist.SinglyLinkedList;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class DoublyLinkedListTest {
 
@@ -99,6 +99,45 @@ class DoublyLinkedListTest {
         linkedList.insert(1, 890);
         String result = " 0 890 1 2 3 4 5 6 7 8 9 10 890";
         assertEquals(result, linkedList.toString());
+    }
+
+    @Test
+    void whenDeleteElementInTheMiddleThenElementIsDeleted() {
+        DoublyLinkedList<Integer> linkedList = createList(11);
+        linkedList.delete(2);
+        assertTrue(linkedList.delete(5));
+        String result = " 0 1 3 4 6 7 8 9 10";
+        assertEquals(result, linkedList.toString());
+    }
+
+    @Test
+    void whenDeleteFirstElementThenElementIsDeletedAndHeadUpdated() {
+        DoublyLinkedList<Integer> linkedList = createList(11);
+        assertTrue(linkedList.delete(0));
+        String result = " 1 2 3 4 5 6 7 8 9 10";
+        assertEquals(result, linkedList.toString());
+        assertEquals(new Integer(1), linkedList.getFirst());
+    }
+
+    @Test
+    void whenRemoveLastElementThenElementIsRemovedAndTailUpdated() {
+        DoublyLinkedList<Integer> linkedList = createList(11);
+        linkedList.delete(10);
+        String result = " 0 1 2 3 4 5 6 7 8 9";
+        assertEquals(result, linkedList.toString());
+        assertEquals(new Integer(9), linkedList.getLast());
+    }
+
+    @Test
+    void whenListIsEmptyThenReturnFalse() {
+        DoublyLinkedList<Integer> linkedList = new DoublyLinkedList<>();
+        assertFalse(linkedList.delete(890));
+    }
+
+    @Test
+    void whenElementNotInTheListThenReturnFalse() {
+        DoublyLinkedList<Integer> linkedList = createList(11);
+        assertFalse(linkedList.delete(100));
     }
 
     private DoublyLinkedList<Integer> createList(int numOfElements) {

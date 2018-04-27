@@ -97,6 +97,7 @@ public class DoublyLinkedList<T> {
                     Node<T> removedNode = current.getNext();
                     if (removedNode.getNext() != null) {
                         current.setNext(removedNode.getNext());
+                        removedNode.getNext().setPrevious(current);
                     } else {
                         current.setNext(null);
                         tail = current;
