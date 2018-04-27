@@ -103,6 +103,14 @@ class SinglyLinkedListTest {
         assertEquals(new Integer(890), linkedList.getLast());
     }
 
+    @Test
+    void whenInsertAndListIsEmptyThenAddFirst() {
+        SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
+        linkedList.insert(0, 890);
+        String result = " 890";
+        assertEquals(result, linkedList.toString());
+    }
+
     private SinglyLinkedList<Integer> createList(int numOfElements) {
         SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
         for (Integer i = 0; i < numOfElements; ++i)

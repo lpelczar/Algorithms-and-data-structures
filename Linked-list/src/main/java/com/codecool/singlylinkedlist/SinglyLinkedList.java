@@ -13,10 +13,16 @@ public class SinglyLinkedList<T> {
     }
 
     public T getFirst() {
+        if (head == null) {
+            throw new ArrayIndexOutOfBoundsException("Empty list");
+        }
         return head.getData();
     }
 
     public T getLast() {
+        if (tail == null) {
+            throw new ArrayIndexOutOfBoundsException("Empty list");
+        }
         return tail.getData();
     }
 
@@ -35,7 +41,9 @@ public class SinglyLinkedList<T> {
 
     public void addAsFirst(T data) {
         Node<T> newHead = new Node<>(data);
-        newHead.setNext(head);
+        if (head != null) {
+            newHead.setNext(head);
+        }
         head = newHead;
         size++;
     }
