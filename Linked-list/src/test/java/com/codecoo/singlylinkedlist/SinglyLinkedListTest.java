@@ -27,7 +27,7 @@ class SinglyLinkedListTest {
     @Test
     void whenGetLastThenReturnLast() {
         SinglyLinkedList<Integer> linkedList = createList(11);
-        assertEquals(new Integer(10), linkedList.getTail());
+        assertEquals(new Integer(10), linkedList.getLast());
     }
 
     @Test
@@ -56,7 +56,7 @@ class SinglyLinkedListTest {
     @Test
     void whenContainsCalledAndElementExistsThenReturnTrue() {
         SinglyLinkedList<Integer> linkedList = createList(12);
-        assertTrue(linkedList.contains(10));
+        assertTrue(linkedList.contains(11));
     }
 
     @Test
@@ -83,6 +83,24 @@ class SinglyLinkedListTest {
         linkedList.insert(2, 890);
         String result = " 0 1 890 2 3 4 5 6 7 8 9 10";
         assertEquals(result, linkedList.toString());
+    }
+
+    @Test
+    void whenInsertAsFirstModifyHead() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        linkedList.insert(0, 890);
+        String result = " 890 0 1 2 3 4 5 6 7 8 9 10";
+        assertEquals(result, linkedList.toString());
+        assertEquals(new Integer(890), linkedList.getFirst());
+    }
+
+    @Test
+    void whenInsertAsLastThenModifyTail() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        linkedList.insert(11, 890);
+        String result = " 0 1 2 3 4 5 6 7 8 9 10 890";
+        assertEquals(result, linkedList.toString());
+        assertEquals(new Integer(890), linkedList.getLast());
     }
 
     private SinglyLinkedList<Integer> createList(int numOfElements) {

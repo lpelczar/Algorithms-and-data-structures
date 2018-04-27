@@ -9,14 +9,14 @@ public class SinglyLinkedList<T> {
     public SinglyLinkedList() {}
 
     public SinglyLinkedList(T data) {
-        this.head = new Node<>(data);
+        head = new Node<>(data);
     }
 
     public T getFirst() {
         return head.getData();
     }
 
-    public T getTail() {
+    public T getLast() {
         return tail.getData();
     }
 
@@ -26,7 +26,7 @@ public class SinglyLinkedList<T> {
 
     public void add(T data) {
         if (head == null) {
-            this.head = new Node<>(data);
+            head = new Node<>(data);
         } else {
             tail = head.append(data);
         }
@@ -35,24 +35,31 @@ public class SinglyLinkedList<T> {
 
     public void addAsFirst(T data) {
         Node<T> newHead = new Node<>(data);
-        newHead.setNext(this.head);
-        this.head = newHead;
+        newHead.setNext(head);
+        head = newHead;
         size++;
     }
 
     public void insert(int index, T data) {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index > size) {
             throw new ArrayIndexOutOfBoundsException();
+        }
+
+        if (index == 0) {
+            addAsFirst(data);
         }
 
         int counter = 0;
         Node<T> current = head;
         while (current != null) {
-            System.out.println(counter);
             if (counter == index - 1) {
                 Node<T> insertedNode = new Node<>(data);
                 insertedNode.setNext(current.getNext());
                 current.setNext(insertedNode);
+
+                if (index == size) {
+                    tail = insertedNode;
+                }
                 size++;
             }
             counter++;
@@ -60,10 +67,26 @@ public class SinglyLinkedList<T> {
         }
     }
 
+//    public boolean deleteWithValue(T data) {
+//        if (head != null && head.getData().equals(data)) {
+//            this.head = head.getNext();
+//            size--;
+//        } else {
+//            Node<T> current = head;
+//            while (current.getNext() != null) {
+//                if (current.getNext().getData().equals(data)) {
+//
+//                    size--;
+//                }
+//                current = current.getNext();
+//            }
+//        }
+//    }
+
     public void clear() {
-        this.head = null;
-        this.tail = null;
-        this.size = 0;
+        head = null;
+        tail = null;
+        size = 0;
     }
 
     public boolean contains(T data) {
