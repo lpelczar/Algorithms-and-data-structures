@@ -1,6 +1,5 @@
-package com.codecoo.singlylinkedlist;
+package com.codecool.singlylinkedlist;
 
-import com.codecool.singlylinkedlist.SinglyLinkedList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
