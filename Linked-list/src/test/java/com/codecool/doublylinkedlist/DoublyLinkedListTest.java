@@ -1,5 +1,6 @@
 package com.codecool.doublylinkedlist;
 
+import com.codecool.singlylinkedlist.SinglyLinkedList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -161,6 +162,25 @@ class DoublyLinkedListTest {
     void whenGetFirstElementThenElementIsReturned() {
         DoublyLinkedList<Integer> linkedList = createList(11);
         assertEquals(new Integer(0), linkedList.getByIndex(0));
+    }
+
+    @Test
+    void whenClearThenListIsEmpty() {
+        DoublyLinkedList<Integer> linkedList = createList(12);
+        linkedList.clear();
+        assertEquals("", linkedList.toString());
+    }
+
+    @Test
+    void whenContainsCalledAndElementExistsThenReturnTrue() {
+        DoublyLinkedList<Integer> linkedList = createList(12);
+        assertTrue(linkedList.contains(11));
+    }
+
+    @Test
+    void whenContainsCalledAndElementNotExistsThenReturnFalse() {
+        DoublyLinkedList<Integer> linkedList = new DoublyLinkedList<>();
+        assertFalse(linkedList.contains(10));
     }
 
     private DoublyLinkedList<Integer> createList(int numOfElements) {
