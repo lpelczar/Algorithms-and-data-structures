@@ -94,6 +94,7 @@ public class SinglyLinkedList<T> {
                         current.setNext(removedNode.getNext());
                     } else {
                         current.setNext(null);
+                        tail = current;
                     }
                     size--;
                     isDeleted = true;

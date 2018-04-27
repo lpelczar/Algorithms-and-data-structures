@@ -124,9 +124,39 @@ class SinglyLinkedListTest {
     void whenDeleteElementInTheMiddleThenElementIsDeleted() {
         SinglyLinkedList<Integer> linkedList = createList(11);
         linkedList.delete(2);
-        linkedList.delete(5);
+        assertTrue(linkedList.delete(5));
         String result = " 0 1 3 4 6 7 8 9 10";
         assertEquals(result, linkedList.toString());
+    }
+
+    @Test
+    void whenDeleteFirstElementThenElementIsDeletedAndHeadUpdated() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        assertTrue(linkedList.delete(0));
+        String result = " 1 2 3 4 5 6 7 8 9 10";
+        assertEquals(result, linkedList.toString());
+        assertEquals(new Integer(1), linkedList.getFirst());
+    }
+
+    @Test
+    void whenRemoveLastElementThenElementIsRemovedAndTailUpdated() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        linkedList.delete(10);
+        String result = " 0 1 2 3 4 5 6 7 8 9";
+        assertEquals(result, linkedList.toString());
+        assertEquals(new Integer(9), linkedList.getLast());
+    }
+
+    @Test
+    void whenListIsEmptyThenReturnFalse() {
+        SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
+        assertFalse(linkedList.delete(890));
+    }
+
+    @Test
+    void whenElementNotInTheListThenReturnFalse() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        assertFalse(linkedList.delete(100));
     }
 
     private SinglyLinkedList<Integer> createList(int numOfElements) {
