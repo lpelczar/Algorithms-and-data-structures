@@ -49,6 +49,8 @@ public class DoublyLinkedList<T> {
         if (head != null) {
             newHead.setNext(head);
             head.setPrevious(newHead);
+        } else {
+            tail = newHead;
         }
         head = newHead;
         size++;
@@ -92,6 +94,7 @@ public class DoublyLinkedList<T> {
         boolean isDeleted = false;
         if (head.getData().equals(data)) {
             this.head = head.getNext();
+            head.setPrevious(null);
             size--;
             isDeleted = true;
         } else {
