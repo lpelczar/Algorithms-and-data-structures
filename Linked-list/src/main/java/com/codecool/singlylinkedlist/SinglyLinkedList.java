@@ -106,6 +106,31 @@ public class SinglyLinkedList<T> {
         return isDeleted;
     }
 
+    public T getByIndex(int index) {
+        if (index < 0 || index > size) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+
+        if (head == null) {
+            throw new ArrayIndexOutOfBoundsException("Empty list");
+        }
+        T data = null;
+        if (index == 0) {
+            data = head.getData();
+        }
+
+        int counter = 0;
+        Node<T> current = head;
+        while (current != null) {
+            if (counter == index) {
+                data = current.getData();
+            }
+            counter++;
+            current = current.getNext();
+        }
+        return data;
+    }
+
     public void clear() {
         head = null;
         tail = null;

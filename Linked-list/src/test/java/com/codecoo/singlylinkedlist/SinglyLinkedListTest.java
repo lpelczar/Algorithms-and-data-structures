@@ -159,6 +159,30 @@ class SinglyLinkedListTest {
         assertFalse(linkedList.delete(100));
     }
 
+    @Test
+    void whenListIsEmptyThenThrowException() {
+        SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.getByIndex(0));
+    }
+
+    @Test
+    void whenGetByIndexThenElementIsReturned() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        assertEquals(new Integer(2), linkedList.getByIndex(2));
+    }
+
+    @Test
+    void whenGetLastByIndexThenElementIsReturned() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        assertEquals(new Integer(10), linkedList.getByIndex(10));
+    }
+
+    @Test
+    void whenGetFirstElementThenElementIsReturned() {
+        SinglyLinkedList<Integer> linkedList = createList(11);
+        assertEquals(new Integer(0), linkedList.getByIndex(0));
+    }
+
     private SinglyLinkedList<Integer> createList(int numOfElements) {
         SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
         for (Integer i = 0; i < numOfElements; ++i)
