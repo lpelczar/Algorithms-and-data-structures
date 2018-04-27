@@ -1,6 +1,5 @@
 package com.codecool.doublylinkedlist;
 
-import com.codecool.singlylinkedlist.SinglyLinkedList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -138,6 +137,30 @@ class DoublyLinkedListTest {
     void whenElementNotInTheListThenReturnFalse() {
         DoublyLinkedList<Integer> linkedList = createList(11);
         assertFalse(linkedList.delete(100));
+    }
+
+    @Test
+    void whenListIsEmptyThenThrowException() {
+        DoublyLinkedList<Integer> linkedList = new DoublyLinkedList<>();
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.getByIndex(0));
+    }
+
+    @Test
+    void whenGetByIndexThenElementIsReturned() {
+        DoublyLinkedList<Integer> linkedList = createList(11);
+        assertEquals(new Integer(2), linkedList.getByIndex(2));
+    }
+
+    @Test
+    void whenGetLastByIndexThenElementIsReturned() {
+        DoublyLinkedList<Integer> linkedList = createList(11);
+        assertEquals(new Integer(10), linkedList.getByIndex(10));
+    }
+
+    @Test
+    void whenGetFirstElementThenElementIsReturned() {
+        DoublyLinkedList<Integer> linkedList = createList(11);
+        assertEquals(new Integer(0), linkedList.getByIndex(0));
     }
 
     private DoublyLinkedList<Integer> createList(int numOfElements) {

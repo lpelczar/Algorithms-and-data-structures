@@ -118,7 +118,7 @@ public class DoublyLinkedList<T> {
         }
 
         if (head == null) {
-            throw new ArrayIndexOutOfBoundsException("Empty list");
+            throw new ArrayIndexOutOfBoundsException("List is empty");
         }
         T data = null;
         if (index == 0) {
@@ -131,8 +131,8 @@ public class DoublyLinkedList<T> {
             if (counter == index) {
                 data = current.getData();
             }
-            counter++;
             current = current.getNext();
+            counter++;
         }
         return data;
     }
