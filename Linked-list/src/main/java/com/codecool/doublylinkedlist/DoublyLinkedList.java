@@ -1,6 +1,10 @@
 package com.codecool.doublylinkedlist;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class DoublyLinkedList<T> {
 
     private Node<T> head;
@@ -157,12 +161,16 @@ public class DoublyLinkedList<T> {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        Node<T> current = head;
+        List<T> result = new ArrayList<>();
+        Node<T> current = tail;
         while (current != null) {
+            result.add(0, current.getData());
+            current = current.getPrevious();
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (T item : result) {
             stringBuilder.append(" ");
-            stringBuilder.append(current.getData());
-            current = current.getNext();
+            stringBuilder.append(item);
         }
         return stringBuilder.toString();
     }
