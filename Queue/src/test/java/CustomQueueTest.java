@@ -54,4 +54,21 @@ class CustomQueueTest {
         queue.dequeue();
         assertTrue(queue.isEmpty());
     }
+
+    @Test
+    void givenThreeElementsQueueWhenGetSizeThenReturn3() {
+        CustomQueue<Integer> queue = new CustomQueue<>();
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+        queue.enqueue(4);
+        queue.dequeue();
+        assertEquals(3, queue.size());
+    }
+
+    @Test
+    void givenEmptyQueueWhenGetSizeThenReturn0() {
+        CustomQueue<Integer> queue = new CustomQueue<>();
+        assertEquals(0, queue.size());
+    }
 }

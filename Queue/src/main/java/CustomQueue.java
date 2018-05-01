@@ -1,6 +1,7 @@
 public class CustomQueue<T> {
 
     private Node<T> firstNode;
+    private int size = 0;
 
     public CustomQueue() {}
 
@@ -14,6 +15,7 @@ public class CustomQueue<T> {
             }
             current.setNextNode(new Node<>(value));
         }
+        size++;
     }
 
     public T peek() {
@@ -36,7 +38,12 @@ public class CustomQueue<T> {
                 firstNode = null;
             }
         }
+        size--;
         return result.getValue();
+    }
+
+    public int size() {
+        return size;
     }
 
     public boolean isEmpty() {
