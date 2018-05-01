@@ -3,3 +3,4 @@ out/
 *.xml
 .gradle/
 build/
+target/
