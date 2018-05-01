@@ -71,4 +71,32 @@ class CustomQueueTest {
         CustomQueue<Integer> queue = new CustomQueue<>();
         assertEquals(0, queue.size());
     }
+
+    @Test
+    void whenAddElementsWithDifferentPriorityThenElementsAreProperlyAdded() {
+        CustomQueue<Integer> queue = new CustomQueue<>();
+        queue.enqueue(2, 1);
+        queue.enqueue(3, 1);
+        queue.enqueue(8, 3);
+        queue.enqueue(4, 2);
+        queue.enqueue(16, 100);
+        queue.enqueue(32, 50);
+        queue.enqueue(256, 2);
+        String expected = " 16 32 8 4 256 2 3";
+        assertEquals(expected, queue.toString());
+    }
+
+    @Test
+    void whenAddElementsWithDifferentPriorityAndDequeueThenElementsAreProperlyAdded() {
+        CustomQueue<Integer> queue = new CustomQueue<>();
+        queue.enqueue(2, 1);
+        queue.enqueue(3, 1);
+        queue.enqueue(16, 100);
+        queue.enqueue(32, 50);
+        queue.dequeue();
+        queue.enqueue(256, 2);
+
+        String expected = " 32 256 2 3";
+        assertEquals(expected, queue.toString());
+    }
 }

@@ -6,14 +6,29 @@ public class CustomQueue<T> {
     public CustomQueue() {}
 
     public void enqueue(T value) {
+        this.enqueue(value, 0);
+    }
+
+    public void enqueue(T value, Integer priority) {
         if (firstNode == null) {
-            firstNode = new Node<>(value);
+            firstNode = new Node<>(value, priority);
         } else {
-            Node<T> current = firstNode;
-            while (current.getNextNode() != null) {
-                current = current.getNextNode();
+            Node<T> newNode = new Node<>(value, priority);
+            if (firstNode.getPriority() < priority) {
+                newNode.setNextNode(firstNode);
+                firstNode = newNode;
+            } else {
+                Node<T> previous = null;
+                Node<T> current = firstNode;
+                while (current != null && current.getPriority() >= priority) {
+                    previous = current;
+                    current = current.getNextNode();
+                }
+                if (previous != null) {
+                    previous.setNextNode(newNode);
+                }
+                newNode.setNextNode(current);
             }
-            current.setNextNode(new Node<>(value));
         }
         size++;
     }
@@ -55,6 +70,7 @@ public class CustomQueue<T> {
         StringBuilder stringBuilder = new StringBuilder();
         Node<T> current = firstNode;
         while (current != null) {
+            System.out.println(current);
             stringBuilder.append(" ");
             stringBuilder.append(current.getValue());
             current = current.getNextNode();
