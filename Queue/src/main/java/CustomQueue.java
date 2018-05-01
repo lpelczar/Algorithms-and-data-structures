@@ -16,6 +16,14 @@ public class CustomQueue<T> {
         }
     }
 
+    public T peek() {
+        if (firstNode == null) {
+            throw new EmptyQueue("Queue is empty!");
+        } else {
+            return firstNode.getValue();
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
