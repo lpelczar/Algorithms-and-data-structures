@@ -21,6 +21,22 @@ class Stack<E> {
         }
     }
 
+    @SuppressWarnings("unchecked")
+    E pop() {
+        E element;
+        if (size > 0) {
+            element = (E) elements[--size];
+        } else {
+            throw new StackUnderflow("Stack is empty");
+        }
+        return element;
+    }
+
+
+    int getSize() {
+        return size;
+    }
+
     int getFreeSpaceSize() {
         return capacity - size;
     }
