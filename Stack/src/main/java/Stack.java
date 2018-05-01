@@ -1,5 +1,6 @@
 class Stack<E> {
 
+    private int size = 0;
     private int capacity;
     private Object[] elements;
 
@@ -12,12 +13,28 @@ class Stack<E> {
         return capacity;
     }
 
-    int getFreeSpaceSize() {
-        int freeElementsQuantity = 0;
-        for (Object elem : elements) {
-            if (elem == null) freeElementsQuantity++;
+    void push(E element) {
+        if (size < capacity) {
+            elements[size++] = element;
+        } else {
+            throw new StackOverflow("Stack if full");
         }
-        return freeElementsQuantity;
+    }
+
+    int getFreeSpaceSize() {
+        return capacity - size;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Object elem : elements) {
+            if (elem != null) {
+                stringBuilder.append(" ");
+                stringBuilder.append(elem);
+            }
+        }
+        return stringBuilder.toString();
     }
 }
 
