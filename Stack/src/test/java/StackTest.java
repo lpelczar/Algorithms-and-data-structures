@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StackTest {
 
@@ -70,5 +71,18 @@ class StackTest {
         stack.push(3);
         assertEquals(new Integer(3), stack.peek());
         assertEquals(3 ,stack.getSize());
+    }
+
+    @Test
+    void givenEmptyStackWhenIsEmptyMethodCalledThenReturnTrue() {
+        Stack<Integer> stack = new Stack<>(10);
+        assertTrue(stack.isEmpty());
+    }
+
+    @Test
+    void givenNotEmptyStackWhenIsEmptyMethodCalledThenReturnFalse() {
+        Stack<Integer> stack = new Stack<>(10);
+        stack.push(3);
+        assertTrue(stack.isEmpty());
     }
 }

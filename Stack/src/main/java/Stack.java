@@ -44,6 +44,9 @@ class Stack<E> {
         return element;
     }
 
+    boolean isEmpty() {
+        return size >= 0;
+    }
 
     int getSize() {
         return size;
