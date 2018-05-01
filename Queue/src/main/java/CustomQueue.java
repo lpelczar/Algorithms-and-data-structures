@@ -24,6 +24,25 @@ public class CustomQueue<T> {
         }
     }
 
+    public T dequeue() {
+        Node<T> result;
+        if (firstNode == null) {
+            throw new EmptyQueue("Queue is empty!");
+        } else {
+            result = firstNode;
+            if (firstNode.getNextNode() != null) {
+                firstNode = firstNode.getNextNode();
+            } else {
+                firstNode = null;
+            }
+        }
+        return result.getValue();
+    }
+
+    public boolean isEmpty() {
+        return firstNode == null;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
