@@ -52,15 +52,23 @@ class StackTest {
         stack.push(10);
         stack.push(3);
         System.out.println(stack);
-        Integer expected1 = 3;
-        Integer expected2 = 10;
-        assertEquals(expected1, stack.pop());
-        assertEquals(expected2, stack.pop());
+        assertEquals(new Integer(3), stack.pop());
+        assertEquals(new Integer(10), stack.pop());
     }
 
     @Test
     void givenEmptyStackWhenPopThenThrowStackUnderflow() {
         Stack<Integer> stack = new Stack<>(3);
         assertThrows(StackUnderflow.class, stack::pop);
+    }
+
+    @Test
+    void whenPeekThenElementIsReturnedAndSizeRemainsUnchanged() {
+        Stack<Integer> stack = new Stack<>(10);
+        stack.push(9);
+        stack.push(10);
+        stack.push(3);
+        assertEquals(new Integer(3), stack.peek());
+        assertEquals(3 ,stack.getSize());
     }
 }

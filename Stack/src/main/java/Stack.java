@@ -26,6 +26,18 @@ class Stack<E> {
         E element;
         if (size > 0) {
             element = (E) elements[--size];
+            elements[size] = null;
+        } else {
+            throw new StackUnderflow("Stack is empty");
+        }
+        return element;
+    }
+
+    @SuppressWarnings("unchecked")
+    E peek() {
+        E element;
+        if (size > 0) {
+            element = (E) elements[size - 1];
         } else {
             throw new StackUnderflow("Stack is empty");
         }
