@@ -1,14 +1,23 @@
-public class Stack<E> {
+class Stack<E> {
 
     private int capacity;
     private Object[] elements;
 
-    public Stack(int capacity) {
+    Stack(int capacity) {
         this.capacity = capacity;
         this.elements = new Object[capacity];
     }
 
-    public int getCapacity() {
+    int getCapacity() {
         return capacity;
     }
+
+    int getFreeSpaceSize() {
+        int freeElementsQuantity = 0;
+        for (Object elem : elements) {
+            if (elem == null) freeElementsQuantity++;
+        }
+        return freeElementsQuantity;
+    }
 }
+

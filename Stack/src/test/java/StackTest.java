@@ -9,4 +9,10 @@ class StackTest {
         Stack<Integer> stack = new Stack<>(5);
         assertEquals(5, stack.getCapacity());
     }
+
+    @Test
+    void givenEmptyStackWhenGettingQuantityOfFreeSpacesThenReturnCorrectValue() {
+        Stack<Integer> stack = new Stack<>(5);
+        assertEquals(5, stack.getFreeSpaceSize());
+    }
 }
