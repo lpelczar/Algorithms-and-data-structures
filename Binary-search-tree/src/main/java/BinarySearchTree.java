@@ -33,6 +33,20 @@ public class BinarySearchTree {
         return root;
     }
 
+    public boolean search(Integer number) {
+        return findNumber(root, number);
+    }
+
+    private boolean findNumber(Node node, Integer number) {
+        boolean found = false;
+        if (node != null) {
+            if (number == node.getData()) return true;
+            if (number < (Integer) node.getData()) { found = findNumber(node.getLeftChild(), number); }
+            if (number > (Integer) node.getData()) { found = findNumber(node.getRightChild(), number); }
+        }
+        return found;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
