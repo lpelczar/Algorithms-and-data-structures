@@ -50,4 +50,36 @@ class BinarySearchTreeTest {
         BinarySearchTree binarySearchTree = BinarySearchTree.fromArray(new Integer[] {1,2,4,5,6,7});
         assertThrows(IllegalArgumentException.class, () -> binarySearchTree.add(2));
     }
+
+    @Test
+    void givenNumberAsTheLeafWhenDeleteNumberThenItIsProperlyDeleted() {
+        BinarySearchTree binarySearchTree = BinarySearchTree.fromArray(new Integer[] {1,2,3,4,5,6,7});
+        binarySearchTree.remove(7);
+        String expected = " 1 2 3 4 5 6";
+        assertEquals(expected, binarySearchTree.toString());
+    }
+
+    @Test
+    void whenDeleteNumberInTheMiddleThenItIsProperlyDeleted() {
+        BinarySearchTree binarySearchTree = BinarySearchTree.fromArray(new Integer[] {1,2,3,4,5,6,7});
+        binarySearchTree.remove(3);
+        String expected = " 1 2 4 5 6 7";
+        assertEquals(expected, binarySearchTree.toString());
+    }
+
+    @Test
+    void whenDeleteRootThenItIsProperlyDeleted() {
+        BinarySearchTree binarySearchTree = BinarySearchTree.fromArray(new Integer[] {1,2,3,4,5,6,7});
+        binarySearchTree.remove(1);
+        String expected = " 2 3 4 5 6 7";
+        assertEquals(expected, binarySearchTree.toString());
+    }
+
+    @Test
+    void whenDeleteAndNumberNotInTreeThenNothingChanges() {
+        BinarySearchTree binarySearchTree = BinarySearchTree.fromArray(new Integer[] {1,2,3,4,5,6,7});
+        binarySearchTree.remove(9);
+        String expected = " 1 2 3 4 5 6 7";
+        assertEquals(expected, binarySearchTree.toString());
+    }
 }

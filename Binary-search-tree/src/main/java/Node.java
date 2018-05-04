@@ -12,6 +12,10 @@ class Node<T> {
         return data;
     }
 
+    public void setData(T data) {
+        this.data = data;
+    }
+
     public void setLeftChild(Node<T> leftChild) {
         this.leftChild = leftChild;
     }

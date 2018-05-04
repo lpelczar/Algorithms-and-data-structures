@@ -40,7 +40,7 @@ public class BinarySearchTree {
     private boolean findNumber(Node<Integer> node, Integer number) {
         boolean found = false;
         if (node != null) {
-            if (number == node.getData()) return true;
+            if (number.equals(node.getData())) return true;
             if (number < node.getData()) { found = findNumber(node.getLeftChild(), number); }
             if (number > node.getData()) { found = findNumber(node.getRightChild(), number); }
         }
@@ -63,14 +63,54 @@ public class BinarySearchTree {
             return root;
         }
 
-        if (number < root.getData())
+        if (number < root.getData()) {
             root.setLeftChild(insert(root.getLeftChild(), number));
-        else if (number > root.getData())
+        } else if (number > root.getData()) {
             root.setRightChild(insert(root.getRightChild(), number));
+        }
+        return root;
+    }
+
+    public void remove(Integer number) {
+
+        root = delete(root, number);
+    }
+
+    private Node<Integer> delete(Node<Integer> root, Integer number) {
+
+        if (root == null) return root;
+
+        if (number < root.getData()) {
+            root.setLeftChild(delete(root.getLeftChild(), number));
+        } else if (number > root.getData()) {
+            root.setRightChild(delete(root.getRightChild(), number));
+        } else {
+            /* Node has one child or is the leaf */
+            if (root.getLeftChild() == null)
+                return root.getRightChild();
+            else if (root.getRightChild() == null)
+                return root.getLeftChild();
+
+            /* Node has two children -> get smallest value from the right node children */
+            root.setData(getLowestChildValue(root.getRightChild()));
+
+            /* Delete right child */
+            root.setRightChild(delete(root.getRightChild(), root.getData()));
+        }
 
         return root;
     }
 
+    private Integer getLowestChildValue(Node<Integer> root) {
+
+        Integer minValue = root.getData();
+        while (root.getLeftChild() != null)
+        {
+            minValue = root.getLeftChild().getData();
+            root = root.getLeftChild();
+        }
+        return minValue;
+    }
 
     @Override
     public String toString() {
