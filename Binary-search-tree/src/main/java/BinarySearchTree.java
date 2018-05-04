@@ -78,7 +78,7 @@ public class BinarySearchTree {
 
     private Node<Integer> delete(Node<Integer> root, Integer number) {
 
-        if (root == null) return root;
+        if (root == null) return null;
 
         if (number < root.getData()) {
             root.setLeftChild(delete(root.getLeftChild(), number));
@@ -91,10 +91,10 @@ public class BinarySearchTree {
             else if (root.getRightChild() == null)
                 return root.getLeftChild();
 
-            /* Node has two children -> get smallest value from the right node children */
+            /* Node has two children -> get smallest value from the right child descendants */
             root.setData(getLowestChildValue(root.getRightChild()));
 
-            /* Delete right child */
+            /* Delete the smallest from the right child descendants */
             root.setRightChild(delete(root.getRightChild(), root.getData()));
         }
 
