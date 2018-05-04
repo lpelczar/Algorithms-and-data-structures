@@ -4,9 +4,9 @@ import java.util.stream.IntStream;
 
 public class BinarySearchTree {
 
-    private Node root;
+    private Node<Integer> root;
 
-    private BinarySearchTree(Node root) {
+    private BinarySearchTree(Node<Integer> root) {
         this.root = root;
     }
 
@@ -33,19 +33,44 @@ public class BinarySearchTree {
         return root;
     }
 
-    public boolean search(Integer number) {
+    public boolean contains(Integer number) {
         return findNumber(root, number);
     }
 
-    private boolean findNumber(Node node, Integer number) {
+    private boolean findNumber(Node<Integer> node, Integer number) {
         boolean found = false;
         if (node != null) {
             if (number == node.getData()) return true;
-            if (number < (Integer) node.getData()) { found = findNumber(node.getLeftChild(), number); }
-            if (number > (Integer) node.getData()) { found = findNumber(node.getRightChild(), number); }
+            if (number < node.getData()) { found = findNumber(node.getLeftChild(), number); }
+            if (number > node.getData()) { found = findNumber(node.getRightChild(), number); }
         }
         return found;
     }
+
+    public void add(Integer number) {
+
+        if (contains(number)) {
+            throw new IllegalArgumentException("Tree already contains this number!");
+        }
+
+        root = insert(root, number);
+    }
+
+    private Node<Integer> insert(Node<Integer> root, Integer number) {
+
+        if (root == null) {
+            root = new Node<>(number);
+            return root;
+        }
+
+        if (number < root.getData())
+            root.setLeftChild(insert(root.getLeftChild(), number));
+        else if (number > root.getData())
+            root.setRightChild(insert(root.getRightChild(), number));
+
+        return root;
+    }
+
 
     @Override
     public String toString() {
@@ -54,7 +79,7 @@ public class BinarySearchTree {
         return stringBuilder.toString();
     }
 
-    private void printTreeAscending(Node node, StringBuilder stringBuilder) {
+    private void printTreeAscending(Node<Integer> node, StringBuilder stringBuilder) {
         if (node != null) {
             printTreeAscending(node.getLeftChild(), stringBuilder);
             stringBuilder.append(" ");
