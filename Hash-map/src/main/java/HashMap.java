@@ -57,6 +57,15 @@ public class HashMap<K, V> {
         }
     }
 
+    public boolean isEmpty() {
+        for (LinkedList<Entry<K, V>> list : elements) {
+            if (!list.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private int getHashPosition(K key) {
         return key.hashCode() % bucketSize;
     }

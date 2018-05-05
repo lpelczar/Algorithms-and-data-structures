@@ -75,4 +75,17 @@ class HashMapTest {
         hashMap.clearAll();
         assertEquals("", hashMap.toString());
     }
+
+    @Test
+    void givenEmptyHashMapWhenIsEmptyCalledThenReturnTrue() {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        assertTrue(hashMap.isEmpty());
+    }
+
+    @Test
+    void givenNotEmptyHashMapWhenIsEmptyCalledThenReturnFalse() {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        hashMap.add("Test1", 8);
+        assertFalse(hashMap.isEmpty());
+    }
 }
