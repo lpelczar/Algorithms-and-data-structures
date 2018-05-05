@@ -44,4 +44,11 @@ public class MinHeap {
         heapifyDown();
         return element;
     }
+
+    public void add(int number) {
+        increaseCapacityIfNecessary();
+        elements[size] = number;
+        size++;
+        heapifyUp();
+    }
 }
