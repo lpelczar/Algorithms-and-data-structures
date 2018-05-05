@@ -88,4 +88,19 @@ class HashMapTest {
         hashMap.add("Test1", 8);
         assertFalse(hashMap.isEmpty());
     }
+
+    @Test
+    void givenEmptyHashMapWhenSizeThenReturn0() {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        assertEquals(0, hashMap.size());
+    }
+
+    @Test
+    void givenNotEmptyHashMapWhenSizeThenReturnCorrectSize() {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        hashMap.add("Test1", 8);
+        hashMap.add("Test2", 345);
+        hashMap.remove("Test1");
+        assertEquals(1, hashMap.size());
+    }
 }

@@ -3,6 +3,7 @@ import java.util.LinkedList;
 public class HashMap<K, V> {
 
     private int bucketSize = 16;
+    private int size = 0;
 
     @SuppressWarnings("unchecked")
     private LinkedList<Entry<K, V>>[] elements = new LinkedList[bucketSize];
@@ -21,7 +22,17 @@ public class HashMap<K, V> {
             if (entry.getKey() == key) throw new IllegalArgumentException("Key already exists!");
         }
         list.add(new Entry<>(key,value));
-        // resizeIfNecessary();
+        size++;
+        resizeIfNeeded();
+    }
+
+    private void resizeIfNeeded() {
+
+        // If it holds more elements than bucketSize * 2, destroy and recreate it
+        // with the double size of the elements array.
+        // if it holds less elements than bucketSize / 2, destroy and recreate it
+        // with half size of the elements array.
+
     }
 
     public V getValue(K key) {
@@ -43,9 +54,11 @@ public class HashMap<K, V> {
             if (entry.getKey() == key) {
                 list.remove(entry);
                 removed = true;
+                size--;
                 break;
             }
         }
+        resizeIfNeeded();
         return removed;
     }
 
@@ -55,6 +68,8 @@ public class HashMap<K, V> {
                 list.remove(entry);
             }
         }
+        size = 0;
+        resizeIfNeeded();
     }
 
     public boolean isEmpty() {
@@ -64,6 +79,10 @@ public class HashMap<K, V> {
             }
         }
         return true;
+    }
+
+    public int size() {
+        return size;
     }
 
     private int getHashPosition(K key) {
