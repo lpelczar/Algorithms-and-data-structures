@@ -103,4 +103,26 @@ class HashMapTest {
         hashMap.remove("Test1");
         assertEquals(1, hashMap.size());
     }
+
+    @Test
+    void whenHashMapInitializedThenBucketSizeIs16() {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        assertEquals(16, hashMap.getBucketSize());
+    }
+
+    @Test
+    void whenHashMapHoldsMoreElementsThanBucketSizeX2ThenRecreate() {
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        for (int i = 1; i < 35; i++) {
+            hashMap.add(i, i + 1);
+        }
+        assertEquals(32, hashMap.getBucketSize());
+    }
+
+    @Test
+    void whenHashMapHoldsLessElementsThanHalfBucketSizeThenRecreate() {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        hashMap.add("Test", 1);
+        assertEquals(8, hashMap.getBucketSize());
+    }
 }

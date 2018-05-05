@@ -9,6 +9,10 @@ public class HashMap<K, V> {
     private LinkedList<Entry<K, V>>[] elements = new LinkedList[bucketSize];
 
     {
+        initializeElementsLists();
+    }
+
+    private void initializeElementsLists() {
         for (int i = 0; i < elements.length; i++) {
             elements[i] = new LinkedList<>();
         }
@@ -27,12 +31,28 @@ public class HashMap<K, V> {
     }
 
     private void resizeIfNeeded() {
+        if (size > bucketSize * 2) {
+            bucketSize *= 2;
+            createNewArrayAndCopyElements();
+        }
+        if (size < bucketSize / 2) {
+            bucketSize /= 2;
+            createNewArrayAndCopyElements();
+        }
+    }
 
-        // If it holds more elements than bucketSize * 2, destroy and recreate it
-        // with the double size of the elements array.
-        // if it holds less elements than bucketSize / 2, destroy and recreate it
-        // with half size of the elements array.
+    @SuppressWarnings("unchecked")
+    private void createNewArrayAndCopyElements() {
+        LinkedList<Entry<K, V>>[] elementsCopy = elements.clone();
+        elements = new LinkedList[bucketSize];
+        initializeElementsLists();
 
+        for (LinkedList<Entry<K, V>> list : elementsCopy) {
+            for (Entry<K, V> entry : list) {
+                int position = getHashPosition(entry.getKey());
+                elements[position].add(new Entry<>(entry.getKey(), entry.getValue()));
+            }
+        }
     }
 
     public V getValue(K key) {
@@ -83,6 +103,10 @@ public class HashMap<K, V> {
 
     public int size() {
         return size;
+    }
+
+    public int getBucketSize() {
+        return bucketSize;
     }
 
     private int getHashPosition(K key) {
