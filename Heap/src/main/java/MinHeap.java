@@ -56,9 +56,9 @@ public class MinHeap {
 
             if (elements[index] < elements[smallerChildIndex]) {
                 break;
-            } else {
-                swapElements(index, smallerChildIndex);
             }
+
+            swapElements(index, smallerChildIndex);
             index = smallerChildIndex;
         }
     }
