@@ -33,7 +33,7 @@ public class HashMap<K, V> {
         StringBuilder stringBuilder = new StringBuilder();
         for (LinkedList<Entry<K, V>> elem : elements) {
             for (Entry<K, V> entry : elem) {
-                stringBuilder.append(" ").append(entry.getKey()).append(":").append(entry.getValue());
+                stringBuilder.append(" ").append(entry.getKey()).append(" : ").append(entry.getValue());
             }
         }
         return stringBuilder.toString();
