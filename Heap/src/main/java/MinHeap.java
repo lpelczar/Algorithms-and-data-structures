@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class MinHeap {
 
-    private int capacity = 10;
+    private int capacity = 1;
     private int size = 0;
     private int[] elements = new int[capacity];
 
@@ -45,10 +45,45 @@ public class MinHeap {
         return element;
     }
 
+    private void heapifyDown() {
+        int index = 0;
+        while (hasLeftChild(index)) {
+            int smallerChildIndex = getLeftChildIndex(index);
+            if (hasRightChild(index) && getRightChild(index) < getLeftChild(index)) {
+                smallerChildIndex = getLeftChildIndex(index);
+            }
+
+            if (elements[index] >= elements[smallerChildIndex]) {
+                swapElements(index, smallerChildIndex);
+            } else {
+                break;
+            }
+            index = smallerChildIndex;
+        }
+    }
+
     public void add(int number) {
         increaseCapacityIfNecessary();
         elements[size] = number;
         size++;
         heapifyUp();
+    }
+
+    private void heapifyUp() {
+        int index = size - 1;
+        while (hasParent(index) && getParent(index) > elements[index]) {
+            swapElements(getParentIndex(index), index);
+            index = getParentIndex(index);
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i : elements) {
+            stringBuilder.append(" ");
+            stringBuilder.append(i);
+        }
+        return stringBuilder.toString();
     }
 }
