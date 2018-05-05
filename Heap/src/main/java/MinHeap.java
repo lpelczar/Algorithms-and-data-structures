@@ -15,4 +15,10 @@ public class MinHeap {
     private int getLeftChild(int index) { return elements[getLeftChildIndex(index)]; }
     private int getRightChild(int index) { return elements[getRightChildIndex(index)]; }
     private int getParent(int index) { return elements[getParentIndex(index)]; }
+
+    private void swapElements(int first, int second) {
+        int temp = elements[first];
+        elements[first] = elements[second];
+        elements[second] = temp;
+    }
 }
