@@ -49,6 +49,14 @@ public class HashMap<K, V> {
         return removed;
     }
 
+    public void clearAll() {
+        for (LinkedList<Entry<K, V>> list : elements) {
+            for (Entry<K, V> entry : list) {
+                list.remove(entry);
+            }
+        }
+    }
+
     private int getHashPosition(K key) {
         return key.hashCode() % bucketSize;
     }
@@ -56,8 +64,8 @@ public class HashMap<K, V> {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (LinkedList<Entry<K, V>> elem : elements) {
-            for (Entry<K, V> entry : elem) {
+        for (LinkedList<Entry<K, V>> list : elements) {
+            for (Entry<K, V> entry : list) {
                 stringBuilder.append(" ").append(entry.getKey()).append(" : ").append(entry.getValue());
             }
         }

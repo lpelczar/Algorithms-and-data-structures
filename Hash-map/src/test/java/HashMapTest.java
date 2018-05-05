@@ -66,4 +66,13 @@ class HashMapTest {
         hashMap.remove("Test2");
         assertEquals("", hashMap.toString());
     }
+
+    @Test
+    void whenClearAllThenMapIsCleared() {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        hashMap.add("Test1", 8);
+        hashMap.add("Test2", 345);
+        hashMap.clearAll();
+        assertEquals("", hashMap.toString());
+    }
 }
