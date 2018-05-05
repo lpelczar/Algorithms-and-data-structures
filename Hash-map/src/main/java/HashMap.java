@@ -24,6 +24,16 @@ public class HashMap<K, V> {
         // resizeIfNecessary();
     }
 
+    public V getValue(K key) {
+        int position = getHashPosition(key);
+        LinkedList<Entry<K, V>> list = elements[position];
+
+        for (Entry<K, V> entry : list) {
+            if (entry.getKey() == key) return entry.getValue();
+        }
+        throw new IllegalArgumentException("Key not found!");
+    }
+
     private int getHashPosition(K key) {
         return key.hashCode() % bucketSize;
     }
