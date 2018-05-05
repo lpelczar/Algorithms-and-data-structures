@@ -34,6 +34,21 @@ public class HashMap<K, V> {
         throw new IllegalArgumentException("Key not found!");
     }
 
+    public boolean remove(K key) {
+        boolean removed = false;
+        int position = getHashPosition(key);
+        LinkedList<Entry<K, V>> list = elements[position];
+
+        for (Entry<K, V> entry : list) {
+            if (entry.getKey() == key) {
+                list.remove(entry);
+                removed = true;
+                break;
+            }
+        }
+        return removed;
+    }
+
     private int getHashPosition(K key) {
         return key.hashCode() % bucketSize;
     }

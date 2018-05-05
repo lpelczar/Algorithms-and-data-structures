@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class HashMapTest {
 
@@ -40,5 +39,31 @@ class HashMapTest {
         hashMap.add("Test1", 8);
         hashMap.add("Test2", 345);
         assertEquals(new Integer(345), hashMap.getValue("Test2"));
+    }
+
+    @Test
+    void whenRemoveAndElementNotExistReturnFalse() {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        assertFalse(hashMap.remove("test"));
+    }
+
+    @Test
+    void whenRemoveThenRemoveElementAndReturnTrue() {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        hashMap.add("Test1", 8);
+        hashMap.add("Test2", 345);
+        String expected = " Test1 : 8";
+        assertTrue(hashMap.remove("Test2"));
+        assertEquals(expected, hashMap.toString());
+    }
+
+    @Test
+    void whenRemoveMultipleTimesThenElementsAreProperlyRemoved() {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        hashMap.add("Test1", 8);
+        hashMap.add("Test2", 345);
+        hashMap.remove("Test1");
+        hashMap.remove("Test2");
+        assertEquals("", hashMap.toString());
     }
 }
