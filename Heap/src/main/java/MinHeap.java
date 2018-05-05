@@ -36,5 +36,12 @@ public class MinHeap {
         return elements[0];
     }
 
-
+    public int poll() {
+        if (size == 0) { throw new IllegalStateException("Heap is empty"); }
+        int element = elements[0];
+        elements[0] = elements[size - 1];
+        size--;
+        heapifyDown();
+        return element;
+    }
 }
