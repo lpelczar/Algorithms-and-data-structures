@@ -7,6 +7,12 @@ public class HashMap<K, V> {
     @SuppressWarnings("unchecked")
     private LinkedList<Entry<K, V>>[] elements = new LinkedList[bucketSize];
 
+    {
+        for (int i = 0; i < elements.length; i++) {
+            elements[i] = new LinkedList<>();
+        }
+    }
+
     public void add(K key, V value) {
         int position = getHashPosition(key);
         LinkedList<Entry<K, V>> list = elements[position];
