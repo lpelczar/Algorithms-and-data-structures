@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class MinHeap {
 
     private int capacity = 10;
@@ -20,5 +22,12 @@ public class MinHeap {
         int temp = elements[first];
         elements[first] = elements[second];
         elements[second] = temp;
+    }
+
+    private void increaseCapacityIfNecessary() {
+        if (size == capacity) {
+            elements = Arrays.copyOf(elements, capacity * 2);
+            capacity *= 2;
+        }
     }
 }
