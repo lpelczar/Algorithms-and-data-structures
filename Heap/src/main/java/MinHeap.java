@@ -30,4 +30,11 @@ public class MinHeap {
             capacity *= 2;
         }
     }
+
+    public int peek() {
+        if (size == 0) { throw new IllegalStateException("Heap is empty"); }
+        return elements[0];
+    }
+
+
 }
