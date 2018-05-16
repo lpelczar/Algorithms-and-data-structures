@@ -1,4 +1,4 @@
-public class CustomQueue<T> {
+public class CustomQueue<T> implements Queue<T> {
 
     private Node<T> firstNode;
     private int size = 0;
