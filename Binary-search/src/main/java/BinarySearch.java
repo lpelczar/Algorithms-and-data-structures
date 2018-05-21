@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class BinarySearch {
+class BinarySearch {
 
-    public int search(List<Integer> sortedList, int item) {
+    Integer search(List<Integer> sortedList, int item) {
 
         if (!isSorted(sortedList)) {
             throw new IllegalArgumentException("List is not sorted!");
@@ -17,11 +17,12 @@ public class BinarySearch {
         while (low <= high) {
 
             int mid = low + (high - low) / 2;
+            System.out.println(mid);
             int element = sortedList.get(mid);
 
             if (element == item) {
                 return mid;
-            } else if (element < item) {
+            } else if (element > item) {
                 high = mid - 1;
             } else {
                 low = mid + 1;
