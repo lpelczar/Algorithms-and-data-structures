@@ -23,6 +23,10 @@ class ArabicRomanConverter {
     }
 
     String convertToRoman(int number) {
+        if (number < 1 || number > 3999) {
+            throw new IllegalArgumentException("Number must be between 2 and 3999");
+        }
+
         StringBuilder romanBuilder = new StringBuilder();
         int counter = 0;
         while (number > 0) {
