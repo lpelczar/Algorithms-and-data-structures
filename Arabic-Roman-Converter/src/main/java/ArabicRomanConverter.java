@@ -28,7 +28,7 @@ class ArabicRomanConverter {
         }
 
         StringBuilder romanBuilder = new StringBuilder();
-        int counter = 0;
+        var counter = 0;
         while (number > 0) {
             while (constants.get(counter).getKey() > number) {
                 counter++;
@@ -37,5 +37,35 @@ class ArabicRomanConverter {
             number -= constants.get(counter).getKey();
         }
         return romanBuilder.toString();
+    }
+
+    int convertToArabic(String input) {
+        checkIfInputIsCorrect(input);
+
+        var number = 0;
+        while (input.length() > 0) {
+            for (var pair : constants) {
+                if (input.startsWith(pair.getValue())) {
+                    input = input.substring(pair.getValue().length());
+                    number += pair.getKey();
+                }
+            }
+        }
+        return number;
+    }
+
+    private void checkIfInputIsCorrect(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("String is null or empty!");
+        }
+
+        if (!input.matches("[MCDLXVI]+")) {
+            throw new IllegalArgumentException("String must contain only MCDLXVI characters!");
+        }
+
+        if (input.matches(".*M{4,}.*") || input.matches(".*C{4,}.*") ||
+            input.matches(".*X{4,}.*") || input.matches(".*I{4,}.*")) {
+            throw new IllegalArgumentException("String cannot contain more than three characters!");
+        }
     }
 }
