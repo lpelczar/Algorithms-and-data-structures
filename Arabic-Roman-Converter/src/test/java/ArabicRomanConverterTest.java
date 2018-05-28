@@ -65,8 +65,20 @@ class ArabicRomanConverterTest {
     }
 
     @Test
-    void convertToArabicMoreThanThreeTest2() {
+    void convertToArabicMoreThanOneTest() {
         ArabicRomanConverter arabicRomanConverter = new ArabicRomanConverter();
-        assertDoesNotThrow(() -> arabicRomanConverter.convertToArabic("DDDDXII"));
+        assertThrows(IllegalArgumentException.class, () -> arabicRomanConverter.convertToArabic("DDXII"));
+    }
+
+    @Test
+    void convertToArabicDoublesTest() {
+        ArabicRomanConverter arabicRomanConverter = new ArabicRomanConverter();
+        assertThrows(IllegalArgumentException.class, () -> arabicRomanConverter.convertToArabic("DCMCMII"));
+    }
+
+    @Test
+    void convertToArabicContainsSpecialTest() {
+        ArabicRomanConverter arabicRomanConverter = new ArabicRomanConverter();
+        assertThrows(IllegalArgumentException.class, () -> arabicRomanConverter.convertToArabic("DVXII"));
     }
 }

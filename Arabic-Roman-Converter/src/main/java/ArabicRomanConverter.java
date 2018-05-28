@@ -65,7 +65,22 @@ class ArabicRomanConverter {
 
         if (input.matches(".*M{4,}.*") || input.matches(".*C{4,}.*") ||
             input.matches(".*X{4,}.*") || input.matches(".*I{4,}.*")) {
-            throw new IllegalArgumentException("String cannot contain more than three characters!");
+            throw new IllegalArgumentException("String cannot contain more than three M, C, X or I characters!");
+        }
+
+        if (input.matches(".*D{2,}.*") || input.matches(".*L{2,}.*") ||
+                input.matches(".*V{2,}.*")) {
+            throw new IllegalArgumentException("String cannot contain more than one D, L, V characters!");
+        }
+
+        if (input.matches(".*(CM){2,}.*") || input.matches(".*(CD){2,}.*") ||
+            input.matches(".*(XC){2,}.*") || input.matches(".*(XL){2,}.*") ||
+            input.matches(".*(IX){2,}.*") || input.matches(".*(IV){2,}.*")) {
+            throw new IllegalArgumentException("String cannot contain doubles like CMCM, CDCD, XCXC, XLXL, IXIX, IVIV!");
+        }
+
+        if (input.contains("VX") || input.contains("IVI") || input.contains("CMM")) {
+            throw new IllegalArgumentException("String cannot contain VX, IVI, CMM!");
         }
     }
 }
