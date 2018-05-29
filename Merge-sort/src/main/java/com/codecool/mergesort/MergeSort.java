@@ -13,10 +13,6 @@ public class MergeSort {
         if (listToSort == null) {
             throw new IllegalArgumentException("List is empty!");
         }
-        mergesort(listToSort);
-    }
-
-    public void mergesort(List<Integer> listToSort) {
         if (listToSort.size() < 2) {
             return;
         }
@@ -25,8 +21,8 @@ public class MergeSort {
         List<Integer> left = new ArrayList<>(listToSort.subList(0, mid));
         List<Integer> right = new ArrayList<>(listToSort.subList(mid, listToSort.size()));
 
-        mergesort(left);
-        mergesort(right);
+        sort(left);
+        sort(right);
         mergeLists(left, right, listToSort);
     }
 
